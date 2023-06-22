@@ -116,11 +116,11 @@ function menu() {
     3 - Consultar Vademecum
     4 - Buscar por Principio Activo
     5 - Buscar por Nombre Comercial
+    6 - Filtrar por Nombre / Principio Activo
     0 - Salir del menu`))
         switch (opcionIngresada) {
             case 1:
                 agregarFarmaco()
-
                 break
             case 2:
                 eliminarFarmaco(vademecum)
@@ -134,6 +134,9 @@ function menu() {
             case 5:
                 buscarPorNombreComercial(vademecum)
                 break
+            case 6:
+                filtrarPrincipioNombre(vademecum)
+                break            
             case 0:
                 console.log(`Gracias por su preferencia, recuerda consultar a tu médico ante cualquier duda`)
                 salirMenu = true
