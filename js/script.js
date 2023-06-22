@@ -44,21 +44,20 @@ function agregarFarmaco() {
 }
 
 //MOSTRAR VADEMECUM
-function verVademecum(array) {
+function verVademecum(vademecum) {
     console.log(`Nuestro vademecum es: `)
-    for (let medicamento of array) {
+    for (let medicamento of vademecum) {
         console.log(medicamento.sn, medicamento.pactivo, medicamento.nombre, medicamento.dosis, medicamento.presentacion, medicamento.categoria)
     }
 }
 
 //BUSCAR POR PRINCIPIO ACTIVO
 
-function buscarPorPrincipioActivo(array) {
+function buscarPorPrincipioActivo(vademecum) {
     let principioBuscado = prompt("Ingrese el principio activo que desea buscar")
-    let busqueda = array.find(
+    let busqueda = vademecum.find(
         (principioAbuscado) => principioAbuscado.pactivo.toUpperCase() === principioBuscado.toUpperCase()
     )
-    //condicional para que al usuario no le aparezca undefined por consola, pasamos msj más prolijo
     if (busqueda == undefined) {
         console.log(`El principio Activo: ${principioBuscado} no está en nuestro Vademecum`)
     } else {
@@ -66,6 +65,46 @@ function buscarPorPrincipioActivo(array) {
     }
 }
 
+//BUSCAR POR NOMBRE COMERCIAL
+
+function buscarPorNombreComercial(vademecum) {
+    let nombreBuscado = prompt("Ingrese el principio activo que desea buscar")
+    let busqueda = vademecum.find(
+        (nombreCbuscado) => nombreCbuscado.nombre.toUpperCase() === nombreBuscado.toUpperCase()
+    )
+    if (busqueda == undefined) {
+        console.log(`El nombre comercial: ${nombreBuscado} no está en nuestro Vademecum`)
+    } else {
+        console.log(busqueda)
+    }
+}
+
+
+//FILTRAR POR NOMBRE O PRINCIPIO ACTIVO
+function filtrarPrincipioNombre(vademecum) {
+    let datoBusqueda = prompt("Ingrese el nombre o principio activo que desea buscar")
+    let busqueda = vademecum.find(
+        (dato) => dato.nombre.toLowerCase() == datoBusqueda.toLowerCase() || dato.pactivo.toLowerCase() == datoBusqueda.toLowerCase()
+    )
+    if (busqueda == undefined) {
+        console.log(`El dato ${datoBusqueda} no está en nuestro Vademecum ni como Principio Activo ni como Nombre Comercial`)
+    } else {
+        console.log(busqueda)
+    }
+}
+
+//FUNCTION ELIMINAR LIBRO: 
+function eliminarFarmaco(vademecum) {
+    verVademecum(vademecum)
+    let eliminarSN = parseInt(prompt("Ingrese el código de barra del fármaco que desea eliminar"))
+    let vademecumID = vademecum.map(medicamento => medicamento.id)
+    console.log(vademecumID)
+    let indice = vademecumID.indexOf(eliminarSN)
+    console.log(indice)
+    vademecum.splice(indice, 1)
+    verVademecum(vademecum)
+
+}
 function menu() {
 
     let salirMenu = false
